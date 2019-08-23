@@ -1,9 +1,9 @@
 import general as g
 
 def getyk(funcion,xk,a):
-    numerador= g.evaluar(xk)
-    denominador=g.evaluar(g.calDerivada(xk))
-    yk= xk - a*(numerador/denominador)
+    numerador= g.evaluar(funcion,xk)
+    denominador=g.evaluar(g.calDerivada(funcion),xk)
+    yk= xk - a*(numerador/abs(denominador))
     return yk
 
 def getxk(funcion,x):
@@ -13,23 +13,22 @@ def getxk(funcion,x):
     b1=1
     b2=1  
     yk=getyk(funcion,x,a)
-    fx=g.evaluar(x)
-    fy=g.evaluar(yk)
-    fdx=g.evaluar(g.calDerivada(x))
-    operando1=fx/((a1*fx)+(a2*fy))
-    operando2=((b1*fx)+(b2*fy))/fx
-    xk=yk-(operando1+operando2)*(fy/fdx)
+    fx=g.evaluar(funcion,x)
+    fy=g.evaluar(funcion,yk)
+    fdx=g.evaluar(g.calDerivada(funcion),x)
+    operando1=fx/abs((a1*fx)+(a2*fy))
+    operando2=((b1*fx)+(b2*fy))/abs(fx)
+    xk=yk-(operando1+operando2)*(fy/abs(fdx))
     return xk
     
-
-def Ostrowski(funcion,x0,tol):
+def Ostrowski(funcion,x0,tol,graf):
     """Resuelve una ecuación no lineal mediante el método de Ostrowski.
 
     a = b = c = 1 and d = 0; this is compared 
     with the classical Steffensen’s method
     
-    Devuelve el valor de la raíz más aproximada según la tolerancia dada
-    uno valor inicial x
+    Devuelve el valor de la raíz más aproximada según la tolerancia dado
+    un valor inicial x
 
     Parámetros:
     funcion -- Funcion dependiente de X, a cálcular su raíz
@@ -38,11 +37,24 @@ def Ostrowski(funcion,x0,tol):
    
     """ 
     xk=getxk(funcion,x0)
-    xk1=getxk(funcion,xk)
-    k=0   #Corresponde a la iteración en que se encuentra
-    while (g.error(xk1,xk)>=tol):  
+    k=1  #Corresponde a la iteración en que se encuentra
+    listaX=[0]
+    listaY=[x0]
+    listaY.append(xk)
+    listaX.append(1)
+    while (g.error(funcion,xk)>=tol):  
         xk=getxk(funcion,xk)
         xk1=getxk(funcion,xk) 
+        listaY.append(xk)
+        listaY.append(xk1)
         k+=2
-    return k
+        listaX.append(k-1)
+        listaX.append(k)
+      
+    if (graf==0):
+        return g.imprimirResultado(listaX[-1],listaY[-1])
+    else:
+        print(listaX,listaY)
+        g.imprimirResultado(listaX[-1],listaY[-1])
+        return g.graficar(listaX,listaY,"Ostrowski")
     

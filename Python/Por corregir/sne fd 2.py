@@ -3,31 +3,33 @@ import general as g
 def getyk(funcion,xk):
     
     zk=getzk(funcion,xk)
-    numerador= pow(g.evaluar(xk),2)
-    denominador=g.evaluar(zk)-g.evaluar(xk)
-    yk=xk- (numerador/denominador)
-    return yk
+    numerador= pow(g.evaluar(funcion,xk),2)
+    denominador=g.evaluar(funcion,zk)-g.evaluar(funcion,xk)
+    yk= xk- (numerador/(denominador))
+    return abs(yk)
 
 def getzk(funcion,xk):
-    zk=xk + g.evaluar(xk)
+    zk=xk + g.evaluar(funcion,xk)
     return zk
 
 def getxk(funcion,x):
     a=1
     b=1
     c=1
-    d=1
-    yk=getyk(funcion,x)
-    zk=getzk(funcion,x)
-    operando1= (a*g.evaluar(yk)-b*g.evaluar(zk))/(yk-zk)
-    operando2= (c*g.evaluar(yk)-d*g.evaluar(x))/(yk-x)
-    numerador=g.evaluar(yk)
-    denominador=operando1+operando2
-    xk=numerador/denominador
-    return xk
-    
+    d=0
+    try:
+        yk=getyk(funcion,x)
+        zk=getzk(funcion,x)
+        operando1= (a*g.evaluar(funcion,yk)-b*g.evaluar(funcion,zk))/abs(yk-zk)
+        operando2= (c*g.evaluar(funcion,yk)-(d*g.evaluar(funcion,x)))/abs(yk-x)
+        numerador=g.evaluar(funcion,yk)
+        denominador=operando1+operando2
+        xk=yk-(numerador/abs(denominador))
+        return xk
+    except:
+        return True
 
-def Steffensen(funcion,x0,tol):
+def Steffensen(funcion,x0,tol,graf):
     """Resuelve una ecuación no lineal mediante el método de Steffensen–Newton.
 
     a = b = c = 1 and d = 0; this is compared 
@@ -43,11 +45,26 @@ def Steffensen(funcion,x0,tol):
    
     """ 
     xk=getxk(funcion,x0)
-    xk1=getxk(funcion,xk)
-    k=0   #Corresponde a la iteración en que se encuentra
-    while (g.error(xk1,xk)>=tol):  
-        xk=getxk(funcion,xk)
+    k=1  #Corresponde a la iteración en que se encuentra
+    listaX=[0]
+    listaY=[x0]
+    listaY.append(xk)
+    listaX.append(1)
+    while (g.error(funcion,xk)>=tol):  
+        print("Entre")
+        xk=getxk(funcion,xk)        
         xk1=getxk(funcion,xk) 
-        k+=2
-    return k
-    
+        if (xk1==True):
+            break
+        else:     
+            listaY.append(xk)
+            listaY.append(xk1)
+            k+=2
+            listaX.append(k-1)
+            listaX.append(k)    
+    if (graf==0):
+        return g.imprimirResultado(listaX[-1],listaY[-1])
+    else:
+        print(listaX,listaY)
+        g.imprimirResultado(listaX[-1],listaY[-1])
+        return g.graficar(listaX,listaY,"Ostrowski")

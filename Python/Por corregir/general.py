@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sympy
 
+
 def evaluar(funcion,varx):
     """Evalúa una función dependiente de X, dado un valor.
 
@@ -32,7 +33,7 @@ def calDerivada(funcion):
     y=sympy.sympify(funcion) #Convierte el string funcion, a tipo Fucnion
     return y.diff(x)   #diff= utilizado para derivar la funcion, respecto a X
 
-def error(x1,x):
+def error(funcion,xk):
     """Formúla que da el error en el método de la Falsa Posicion
 
     Devuelve el valor del error en una iteración específica del
@@ -43,26 +44,24 @@ def error(x1,x):
     x      -- Valor siguiente de la iteración
    
     """   
-    return (x1-x)/x1
+    return evaluar(funcion,xk)
 
+def imprimirResultado(iteraciones,valorAprox):
+    print ("Numero de iteraciones que se utilizaron para aproximar el cero : " + str(iteraciones+1))
+    print ("Aproximacion a la solucion de la ecuacion : " + str (valorAprox))
 
-def graficar(funcion,x0,tol):
+def graficar(listaX,listaY,nombre):
     """Gráfica de una ecuación no lineal mediante el método de Newton-Raphson.
-
-    Devuelve una gráfica de iteraciones vs la función evaluada en X sub k,
-    con k el número de iteraciones
 
     Parámetros:
     funcion -- Funcion dependiente de X, a cálcular su raíz
-    x0      -- Valor inicial dado
-    tol     -- Tolerancia miníma aceptada para encontrar la raíz
+    listaX      -- Valor inicial dado
+    listaY     -- Tolerancia miníma aceptada para encontrar la raíz
    
-    """ 
-    x = range(x0, newtonRaph(funcion,x0,tol))
-    itera=range(1,newtonRaph(funcion,x0,tol))
-    plt.plot(x, [evaluar(funcion,i) for i in itera],'ro')
-    plt.plot(x, [evaluar(funcion,i) for i in itera], label='Metodo de Newton-Raphson')
-    plt.legend()
-    plt.xlabel('Iteraciones')
-    plt.ylabel('| f(X) |')
+    """
+    plt.plot(listaX, listaY)
+    plt.title('Comportamiento del metodo de '+ nombre) 
+    plt.xlabel('iteraciones')
+    plt.ylabel('|f(Xaprox)|')
+    plt.grid(True)
     plt.show()
