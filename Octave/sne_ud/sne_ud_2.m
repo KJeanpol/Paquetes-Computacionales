@@ -25,22 +25,20 @@ function [xAprox, itera, err] = sne_fd_4(fstr, x0, tol, graf)
     
     xk=getxk(funcion,x0)
     k=1  #Corresponde a la iteración en que se encuentra
-    listaX=[0]
-    listaY=[x0]
-    listaY=(listaY xk)
-    listaX=(lista X1)
-    while (error(funcion,xk)>=tol):  
-        print("Entre")
-        xk=getxk(funcion,xk)        
-        xk1=getxk(funcion,xk) 
-        if (xk1==true):
-            break
-        else:     
-            listaY=(listaY xk)
-            listaY=(listaY xk1)
-            k+=2
-            listaX=(lista (Xk-1))
-            listaX=(lista Xk)    
+    listaX=[0];
+    listaY=[x0];
+    listaY=[listaY xk);
+    listaX=[listaX 1);
+    while (error(funcion,xk)>=tol) 
+        xk=getxk(funcion,xk);
+        xk1=getxk(funcion,xk); 
+        listaY=[listaY xk);
+        listaY=[listaY xk1);
+        k+=2;
+        listaX=[listaX k-1);
+        listaX=[listaX k);
+    endwhile
+     
     if (graf)
         plot(listaX, listaY)
     else
@@ -63,6 +61,22 @@ function resultado = evaluar(funcion,varx)
     resultado= func(varx);
  endfunction   
 
+ 
+function derivada = calDerivada(funcion,varx)
+##    Evalúa una función dependiente de X, dado un valor.
+##
+##    Devuelve el valor de la función correspondiente, al susituir
+##    su variable independiente X, por un valor 
+##
+##    Parámetros:
+##    funcion   -- Funcion dependiente de X, a encontrar su valor
+##    varx      -- Valor de la variable X, a sustituir en la función dada
+##        
+    syms x;
+    f=inline(funcion);
+    derivada=char(diff(funcion,x));
+ endfunction   
+ 
 function err= error(funcion,x)
 ##    Formúla que da el error en el método de Bisección
 ##
@@ -78,31 +92,24 @@ function err= error(funcion,x)
 endfunction
 
 
-function y k= getyk(funcion,xk)   
-    zk=getzk(funcion,xk);
-    numerador= pow(g.evaluar(funcion,xk),2);
-    denominador=g.evaluar(funcion,zk)-g.evaluar(funcion,xk);
-    yk= abs(xk- (numerador/(denominador)));
-endfunction
 
-function zk = getzk(funcion,xk)
-    zk=xk + evaluar(funcion,xk);
+function yk = getyk(funcion,xk,a)
+    numerador= evaluar(funcion,xk);
+    denominador=evaluar(calDerivada(funcion),xk);
+    yk= xk - a*(numerador/abs(denominador));
 endfunction
 
 function xk = getxk(funcion,x)
     a=1;
-    b=1;
-    c=1;
-    d=0;
-    try
-        yk=getyk(funcion,x);
-        zk=getzk(funcion,x);
-        operando1= (a*g.evaluar(funcion,yk)-b*g.evaluar(funcion,zk))/abs(yk-zk);
-        operando2= (c*g.evaluar(funcion,yk)-(d*g.evaluar(funcion,x)))/abs(yk-x);
-        numerador=g.evaluar(funcion,yk);
-        denominador=operando1+operando2;
-        xk=yk-(numerador/abs(denominador));
-    catch
-        xk=true;
-    end_try_catch
+    a1=1;
+    a2=1;
+    b1=1;
+    b2=1  ;
+    yk=getyk(funcion,x,a);
+    fx=evaluar(funcion,x);
+    fy=valuar(funcion,yk);
+    fdx=evaluar(calDerivada(funcion),x);
+    operando1=fx/abs((a1*fx)+(a2*fy));
+    operando2=((b1*fx)+(b2*fy))/abs(fx);
+    xk=yk-(operando1+operando2)*(fy/abs(fdx));
 endfunction

@@ -40,7 +40,8 @@ function [xAprox, itera, err] = sne_fd_4(fstr, x0, tol, graf)
             listaY=(listaY xk1)
             k+=2
             listaX=(lista (Xk-1))
-            listaX=(lista Xk)    
+            listaX=(lista Xk)  
+    endwhile  
     if (graf)
         plot(listaX, listaY)
     else
