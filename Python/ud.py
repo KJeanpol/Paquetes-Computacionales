@@ -9,6 +9,26 @@ def Lf(f, fp, fp2, xn):
     return (fn*fp2n)/fpn
 
 def sne_ud_1(fstr, x0, tol, graf): # super-Halley
+
+    """
+    Evalua una funcion dependiente de X para asi encontrar una aproximacion
+    de una de sus raices.
+
+    Recuperado de "Geometric constructions of iterative functions to solve
+        nonlinear equations"    
+    Autores "S.Amat, S.Busquier, J.M. Guti"
+
+    Retorna una lista donde sus elementos son el x aproximado y la cantidad de
+    iteraciones necesarias para cumplir con la tolerancia dada
+
+    parametros:
+    fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
+    x0: valor inicial para empezar a calcular las iteraciones
+    tol: tolerancia aceptable para finalizar el metodo
+    graf: parametro para indicar si se quiere generar la grafica
+
+    """
+
     x = Symbol("x")
     try:
         f = sympify(fstr)
@@ -24,11 +44,12 @@ def sne_ud_1(fstr, x0, tol, graf): # super-Halley
         xAx += [itera]
         yAx += [abs(f.subs(x, xAprox))]
         try:
-            Lfxn = Lf(f, fp, fp2, xAprox)
+            fpxn = 1/(fp.subs(x, xAprox))
+            fpxn = fpxn**(-1)
         except ValueError:
             break
         fxn = f.subs(x, xAprox)
-        fpxn = fp.subs(x, xAprox)
+        Lfxn = Lf(f, fp, fp2, xAprox)
         xAprox = xAprox - (1+0.5*(Lfxn/(1-Lfxn)))*(fxn/fpxn)
         itera += 1
     if (graf):

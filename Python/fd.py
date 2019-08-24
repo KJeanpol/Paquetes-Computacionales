@@ -5,6 +5,10 @@ def sne_fd_1(fstr, x0, tol, graf):
     """Evalua una funcion dependiente de X para asi encontrar una aproximacion
     de una de sus raices.
 
+    Recuperado de "Steffensen type methods for solving nonlinear equations"
+    ecuacion 4
+    Autores "Alicia Cordero, José L. Hueso, Eulalia Martínez, Juan R. Torregrosa"
+
     Retorna una lista donde sus elementos son el x aproximado y la cantidad de
     iteraciones necesarias para cumplir con la tolerancia dada
 
@@ -55,6 +59,10 @@ def sne_fd_1(fstr, x0, tol, graf):
 def sne_fd_2(fstr, x0, tol, graf):
     """Evalua una funcion dependiente de X para asi encontrar una aproximacion
     de una de sus raices.
+
+    Recuperado de "Steffensen type methods for solving nonlinear equations"
+    ecuacion 5
+    Autores "Alicia Cordero, José L. Hueso, Eulalia Martínez, Juan R. Torregrosa"
 
     Retorna una lista donde sus elementos son el x aproximado y la cantidad de
     iteraciones necesarias para cumplir con la tolerancia dada
