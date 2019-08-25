@@ -24,14 +24,15 @@ def sne_ud_5(func, x0, tol, graf):
     while (abs(f.subs(x,aprox))>=tol):
         functionAprox = f.subs(x,aprox)
         firstDerivateAprox = firstDerivate.subs(x,aprox)
-
-        yn = aprox - functionAprox/firstDerivateAprox
-        functionOnYn = f.subs(x,yn)
-        divisor = N(functionAprox/functionAprox-2*functionOnYn)
-        
-        zn = yn - N((divisor)*functionOnYn/firstDerivateAprox)
-        functionOnZn = f.subs(x,zn)
-        temp = N(zn - ((functionAprox-functionOnYn/functionAprox-2*functionOnYn)**2 + (functionOnZn/functionOnYn-5*functionOnZn) + (4*functionOnZn/functionAprox+-7*functionOnZn))*N(functionOnZn/firstDerivateAprox))
+        try:
+            yn = aprox - functionAprox/firstDerivateAprox
+            functionOnYn = f.subs(x,yn)
+            divisor = N(functionAprox/functionAprox-2*functionOnYn)
+            zn = yn - N((divisor)*functionOnYn/firstDerivateAprox)
+            functionOnZn = f.subs(x,zn)
+            temp = N(zn - ((functionAprox-functionOnYn/functionAprox-2*functionOnYn)**2 + (functionOnZn/functionOnYn-5*functionOnZn) + (4*functionOnZn/functionAprox+-7*functionOnZn))*N(functionOnZn/firstDerivateAprox))
+        except: 
+            break
         aprox = temp
         xAxis += [iteration]
         yAxis += [f.subs(x,aprox)]
