@@ -14,24 +14,31 @@ endfunction
 #    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
 #    3) tol: Tolerancia al error maxima para el cálculo de la aproximacion
 #    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-
-
 function [aprox, iteration ] = sne_ud_1(func,x0,tol,graf)
     pkg load symbolic;
     syms x;
     tFunc = strcat('@(x)', func);
-    f = str2func(tFunc);
-    firstDerivate = matlabFunction(diff(func,x));
-    secondDerivate = matlabFunction(diff(firstDerivate,x));
+    try
+        f = str2func(tFunc);
+        firstDerivate = matlabFunction(diff(func,x));
+        secondDerivate = matlabFunction(diff(firstDerivate,x));
+    catch 
+        err = "Syntax error"
+    end_try_catch
+    
     xAxis = [];
     yAxis = [];
     aprox = x0;
     iteration = 1;
     while (abs(f(aprox))>=tol)
-        functionAprox = f(aprox);
-        firstDerivateAprox = firstDerivate(aprox);
-        lF =computeLf(f,firstDerivate,secondDerivate,aprox);
-        temp = aprox - double((1+ 0.5 * (lF/1-lF))*functionAprox/firstDerivateAprox);
+        try
+            functionAprox = f(aprox);
+            firstDerivateAprox = firstDerivate(aprox);
+            lF =computeLf(f,firstDerivate,secondDerivate,aprox);
+            temp = aprox - double((1+ 0.5 * (lF/1-lF))*functionAprox/firstDerivateAprox);
+        catch
+            break
+        end_try_catch 
         aprox = temp;
         xAxis = [xAxis iteration];
         yAxis = [yAxis f(aprox)];
