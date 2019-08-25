@@ -1,3 +1,10 @@
+function [lfValue] = computeLf(func,firstDerivate, secondDerivate, aprox)
+        secondDerivateAprox = secondDerivate(aprox);
+        functionAprox = func(aprox);
+        firstDerivateAprox = firstDerivate(aprox);
+        lfValue = secondDerivateAprox*functionAprox/firstDerivateAprox^2;
+endfunction
+
 #   Método de Liu-Wang, utilizando alfa_1 = 5 y alfa_2 = -7, así como la función sin(x)^2-x^2+1 con x_0 = 1.5
 #   Recuperado del documento "A stable class of improved second-derivative free
 #   Chebyshev-Halley type methods with optimal eighth order convergence" creado por 
