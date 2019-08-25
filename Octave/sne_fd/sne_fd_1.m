@@ -31,6 +31,7 @@ function [xAprox, itera, err] = sne_fd_1(fstr, x0, tol, graf)
     yn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))));
     xn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))))*((f(yn)-f(x0))/(2*f(yn)-f(x0)));
     itera = 0;
+    xAprox = 0;
     xAx = [];
     yAx = [];
     while (abs(f(xn)) >= tol)

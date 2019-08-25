@@ -31,6 +31,7 @@ function [xAprox, iter, err] = sne_ud_1(func, x0, tol, graf)
     end_try_catch
     fp = matlabFunction(diff(f, x));
     itera = 0;
+    xAprox = 0;
     xAprox = x0;
     xAx = [];
     yAx = [];
