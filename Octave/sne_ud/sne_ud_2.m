@@ -1,11 +1,17 @@
 %{
     Evalua una funcion dependiente de X para asi encontrar una aproximacion
     de una de sus raices.
+<<<<<<< HEAD
     Recuperado de "Solving nonlinear problems by Ostrowski–Chun type
     parametric families"
    
     Autores "Alicia Cordero, José L. Hueso, Eulalia Martínez, Juan R. Torregrosa"
     
+=======
+    Recuperado de "Steffensen type methods for solving nonlinear equations"
+    ecuacion 4
+    Autores "Alicia Cordero, JosÃ© L. Hueso, Eulalia MartÃ­nez, Juan R. Torregrosa"
+>>>>>>> 0fa3b44d14b8a3862dddd915a0c86f400c0cda11
     Retorna una lista donde sus elementos son el x aproximado y la cantidad de
     kciones necesarias para cumplir con la tolerancia dada
     parametros:
@@ -27,7 +33,11 @@ function [xk, k, err] = sne_ud_2(funcion, x0, tol, graf)
     end_try_catch
     
     xk=getxk(funcion,x0)
+<<<<<<< HEAD
     k=1  #Corresponde a la kción en que se encuentra
+=======
+    k=1  #Corresponde a la iteraciÃ³n en que se encuentra
+>>>>>>> 0fa3b44d14b8a3862dddd915a0c86f400c0cda11
     listaX=[0];
     listaY=[x0];
     listaY=[listaY xk];
@@ -50,14 +60,14 @@ function [xk, k, err] = sne_ud_2(funcion, x0, tol, graf)
 endfunction
 
 function resultado = evaluar(funcion,varx)
-##    Evalúa una función dependiente de X, dado un valor.
+##    EvalÃºa una funciÃ³n dependiente de X, dado un valor.
 ##
-##    Devuelve el valor de la función correspondiente, al susituir
+##    Devuelve el valor de la funciÃ³n correspondiente, al susituir
 ##    su variable independiente X, por un valor 
 ##
-##    Parámetros:
+##    ParÃ¡metros:
 ##    funcion   -- Funcion dependiente de X, a encontrar su valor
-##    varx      -- Valor de la variable X, a sustituir en la función dada
+##    varx      -- Valor de la variable X, a sustituir en la funciÃ³n dada
 ##        
     func=inline(funcion);
     resultado= func(varx);
@@ -65,14 +75,14 @@ function resultado = evaluar(funcion,varx)
 
  
 function derivada = calDerivada(funcion,varx)
-##    Evalúa una función dependiente de X, dado un valor.
+##    EvalÃºa una funciÃ³n dependiente de X, dado un valor.
 ##
-##    Devuelve el valor de la función correspondiente, al susituir
+##    Devuelve el valor de la funciÃ³n correspondiente, al susituir
 ##    su variable independiente X, por un valor 
 ##
-##    Parámetros:
+##    ParÃ¡metros:
 ##    funcion   -- Funcion dependiente de X, a encontrar su valor
-##    varx      -- Valor de la variable X, a sustituir en la función dada
+##    varx      -- Valor de la variable X, a sustituir en la funciÃ³n dada
 ##        
     syms x;
     f=inline(funcion);
@@ -80,15 +90,24 @@ function derivada = calDerivada(funcion,varx)
  endfunction   
  
 function err= error(funcion,x)
-##    Formúla que da el error en el método de Bisección
+##    FormÃºla que da el error en el mÃ©todo de BisecciÃ³n
 ##
+<<<<<<< HEAD
 ##    Devuelve el valor del error en una kción específica del
 ##    método de la Falsa Posicion
+=======
+##    Devuelve el valor del error en una iteraciÃ³n especÃ­fica del
+##    mÃ©todo de la Falsa Posicion
+>>>>>>> 0fa3b44d14b8a3862dddd915a0c86f400c0cda11
 ##
-##    Parámetros:
+##    ParÃ¡metros:
 ##    a     -- Primer valor del intervalo dado
 ##    b     -- Segundo valor del intervalo dado
+<<<<<<< HEAD
 ##    k     -- Valor la kción en la que se encuentra
+=======
+##    k     -- Valor la iteraciÃ³n en la que se encuentra
+>>>>>>> 0fa3b44d14b8a3862dddd915a0c86f400c0cda11
     func=inline(funcion);
     err= func(x);
 endfunction
