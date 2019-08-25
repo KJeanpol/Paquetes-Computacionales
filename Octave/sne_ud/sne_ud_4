@@ -1,3 +1,10 @@
+function [lfValue] = computeLf(func,firstDerivate, secondDerivate, aprox)
+        secondDerivateAprox = secondDerivate(aprox);
+        functionAprox = func(aprox);
+        firstDerivateAprox = firstDerivate(aprox);
+        lfValue = secondDerivateAprox*functionAprox/firstDerivateAprox^2;
+endfunction
+
 #   Version Original del metodo iterativo Chebyshev-Halley, con un valor de alfa = 1
 #   Recuperado del documento "A stable class of improved second-derivative free
 #   Chebyshev-Halley type methods with optimal eighth order convergence" creado por 
