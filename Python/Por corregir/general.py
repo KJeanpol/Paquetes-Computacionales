@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy
-
+from Equation import Expression
 
 def evaluar(funcion,varx):
     """Evalúa una función dependiente de X, dado un valor.
