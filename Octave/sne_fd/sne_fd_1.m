@@ -1,20 +1,16 @@
 %{
     Evalua una funcion dependiente de X para asi encontrar una aproximacion
     de una de sus raices.
-
     Recuperado de "Steffensen type methods for solving nonlinear equations"
     ecuacion 4
-    Autores "Alicia Cordero, JosÃ© L. Hueso, Eulalia MartÃ­nez, Juan R. Torregrosa"
-
+    Autores "Alicia Cordero, José L. Hueso, Eulalia Martínez, Juan R. Torregrosa"
     Retorna una lista donde sus elementos son el x aproximado y la cantidad de
     iteraciones necesarias para cumplir con la tolerancia dada
-
     parametros:
     fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
     x0: valor inicial para empezar a calcular las iteraciones
     tol: tolerancia aceptable para finalizar el metodo
     graf: parametro para indicar si se quiere generar la grafica
-
     sne_fd_1('sin(x)**2-x**2+1', 5, 0.00000000001, 1)
 %}
 
@@ -31,6 +27,7 @@ function [xAprox, itera, err] = sne_fd_1(fstr, x0, tol, graf)
     yn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))));
     xn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))))*((f(yn)-f(x0))/(2*f(yn)-f(x0)));
     itera = 0;
+    xAprox = 0;
     xAx = [];
     yAx = [];
     while (abs(f(xn)) >= tol)

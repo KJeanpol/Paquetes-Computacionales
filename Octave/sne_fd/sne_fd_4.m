@@ -1,9 +1,12 @@
 %{
     Evalua una funcion dependiente de X para asi encontrar una aproximacion
     de una de sus raices.
+    
     Recuperado de "Steffensen type methods for solving nonlinear equations"
     ecuacion 4
+    
     Autores "Alicia Cordero, José L. Hueso, Eulalia Martínez, Juan R. Torregrosa"
+    
     Retorna una lista donde sus elementos son el x aproximado y la cantidad de
     iteraciones necesarias para cumplir con la tolerancia dada
     parametros:
@@ -13,42 +16,31 @@
     graf: parametro para indicar si se quiere generar la grafica
 %}
 
-function [xAprox, itera, err] = sne_fd_4(fstr, x0, tol, graf)
-    t_func = strcat('@(x)', fstr);
-    try
-        f = str2func(t_func);
-    catch
-        xAprox = 0;
-        itera = 0;
-        err = 'La Syntaxis de la funcion es incorrecta';
-    end_try_catch
-    
-    xk=getxk(funcion,x0)
-    k=1  #Corresponde a la iteración en que se encuentra
-    listaX=[0]
-    listaY=[x0]
-    listaY=(listaY xk)
-    listaX=(lista X1)
-    while (error(funcion,xk)>=tol):  
-        print("Entre")
+function [xAprox, itera, err] = sne_fd_4(funcion, x0, tol, graf)
+    xk=getxk(funcion,x0);
+    k=1;  #Corresponde a la iteración en que se encuentra
+    listaX=[];
+    listaY=[];
+    listaX=[listaX 0];
+    listaY=[listaX x0];
+    listaY=[listaY xk];
+    listaX=[listaX 1];
+    while (abs(error(funcion,xk))>=tol)  
         xk=getxk(funcion,xk)        
-        xk1=getxk(funcion,xk) 
-        if (xk1==true):
-            break
-        else:     
-            listaY=(listaY xk)
-            listaY=(listaY xk1)
-            k+=2
-            listaX=(lista (Xk-1))
-            listaX=(lista Xk)  
-    endwhile  
+        xk1=getxk(funcion,xk)   
+        listaY=[listaY xk]
+        listaY=[listaY xk1]
+        k+=2
+        listaX=[listaX (k-1)]
+        listaX=[listaX k]
+    endwhile 
+    listaX=[listaX (k+1)]
     if (graf)
         plot(listaX, listaY)
     else
         disp('Metodo finalizado')
-    end
+    endif
 endfunction
-
 
 function resultado = evaluar(funcion,varx)
 ##    Evalúa una función dependiente de X, dado un valor.
@@ -62,7 +54,7 @@ function resultado = evaluar(funcion,varx)
 ##        
     func=inline(funcion);
     resultado= func(varx);
- endfunction   
+endfunction   
 
 function err= error(funcion,x)
 ##    Formúla que da el error en el método de Bisección
@@ -75,14 +67,14 @@ function err= error(funcion,x)
 ##    b     -- Segundo valor del intervalo dado
 ##    k     -- Valor la iteración en la que se encuentra
     func=inline(funcion);
-    err= func(varx);
+    err= func(x);
 endfunction
 
 
-function y k= getyk(funcion,xk)   
+function yk= getyk(funcion,xk)   
     zk=getzk(funcion,xk);
-    numerador= pow(g.evaluar(funcion,xk),2);
-    denominador=g.evaluar(funcion,zk)-g.evaluar(funcion,xk);
+    numerador= (evaluar(funcion,xk))**2;
+    denominador=evaluar(funcion,zk)-evaluar(funcion,xk);
     yk= abs(xk- (numerador/(denominador)));
 endfunction
 
@@ -95,15 +87,11 @@ function xk = getxk(funcion,x)
     b=1;
     c=1;
     d=0;
-    try
-        yk=getyk(funcion,x);
-        zk=getzk(funcion,x);
-        operando1= (a*g.evaluar(funcion,yk)-b*g.evaluar(funcion,zk))/abs(yk-zk);
-        operando2= (c*g.evaluar(funcion,yk)-(d*g.evaluar(funcion,x)))/abs(yk-x);
-        numerador=g.evaluar(funcion,yk);
-        denominador=operando1+operando2;
-        xk=yk-(numerador/abs(denominador));
-    catch
-        xk=true;
-    end_try_catch
+    yk=getyk(funcion,x);
+    zk=getzk(funcion,x);
+    operando1= (a*evaluar(funcion,yk)-b*evaluar(funcion,zk))/abs(yk-zk);
+    operando2= (c*evaluar(funcion,yk)-(d*evaluar(funcion,x)))/abs(yk-x);
+    numerador=evaluar(funcion,yk);
+    denominador=operando1+operando2;
+    xk=yk-(numerador/abs(denominador));
 endfunction

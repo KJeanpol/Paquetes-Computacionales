@@ -1,20 +1,21 @@
 %{
     Evalua una funcion dependiente de X para asi encontrar una aproximacion
     de una de sus raices.
-    Recuperado de "Steffensen type methods for solving nonlinear equations"
+    Recuperado de "Low-complexity root-finding iteration functions with no
+    derivatives of any order of convergence?"
     ecuacion 4
     Autores "Alicia Cordero, José L. Hueso, Eulalia Martínez, Juan R. Torregrosa"
     Retorna una lista donde sus elementos son el x aproximado y la cantidad de
     iteraciones necesarias para cumplir con la tolerancia dada
     parametros:
-    fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
+    funcion: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
     x0: valor inicial para empezar a calcular las iteraciones
     tol: tolerancia aceptable para finalizar el metodo
     graf: parametro para indicar si se quiere generar la grafica
 %}
 
-function [xAprox, itera, err] = sne_fd_3(fstr, x0, tol, graf)
-    t_func = strcat('@(x)', fstr);
+function [xAprox, itera, err] = sne_fd_3(funcion, x0, tol, graf)
+    t_func = strcat('@(x)', funcion);
     try
         f = str2func(t_func);
     catch
@@ -22,21 +23,23 @@ function [xAprox, itera, err] = sne_fd_3(fstr, x0, tol, graf)
         itera = 0;
         err = 'La Syntaxis de la funcion es incorrecta';
     end_try_catch
-    
-    xk=getXk(funcion,x0)
-    k=1  #Corresponde a la iteración en que se encuentra
-    listaX=[0]
-    listaY=[x0]
-    listaY=(listaY xk)
-    listaX=(listaX 1)
-    while (abs(error(funcion,xk))>=tol):  
-        xk=getXk(funcion,xk)        
-        xk1=getXk(funcion,xk) 
-        listaY=(listaY xk)
-        listaY=(listaY xk1)
-        k+=2
-        listaX=(listaX k-1)
-        listaX=(listaX k) 
+    xk=getXk(funcion,x0);
+    k=1;  #Corresponde a la iteración en que se encuentra
+    listaX=[];
+    listaY=[];
+    xi=x0;
+    listaX=[listaX 0];
+    listaY=[listaY xi];
+    listaX=[listaX 1];  
+    listaY=[listaY xk];
+    while (abs(error(funcion,xk))>=tol)  
+        xk=getXk(funcion,xk);      
+        xk1=getXk(funcion,xk);
+        listaY=[listaY xk];
+        listaY=[listaY xk1];
+        k+=2;
+        listaX=[listaX k-1];
+        listaX=[listaX k]; 
     endwhile   
     if (graf)
         plot(listaX, listaY)
@@ -73,7 +76,7 @@ endfunction
 function yk = getyk(funcion,xk)
     zk=getzk(funcion,xk);
     fxk=evaluar(funcion,xk);
-    fzx=getFZX(funcion,zk,xk)
+    fzx=getFZX(funcion,zk,xk);
     yk= xk - (fxk/fzx);
 endfunction
 
@@ -96,5 +99,5 @@ function err= error(funcion,x)
 ##    b     -- Segundo valor del intervalo dado
 ##    k     -- Valor la iteración en la que se encuentra
     func=inline(funcion);
-    err= func(varx);
+    err= func(x);
 endfunction
