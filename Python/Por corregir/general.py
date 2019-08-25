@@ -19,7 +19,6 @@ def evaluar(funcion,varx):
     return float(y)
 
 
-
 def calDerivada(funcion):
     """Determina la derivada de una función dependiente de X.
 
@@ -59,7 +58,7 @@ def graficar(listaX,listaY,nombre):
     listaY     -- Tolerancia miníma aceptada para encontrar la raíz
    
     """
-    plt.plot(listaX, listaY)
+    plt.plot(listaX, listaY, marker='o', color='b')
     plt.title('Comportamiento del metodo de '+ nombre) 
     plt.xlabel('iteraciones')
     plt.ylabel('|f(Xaprox)|')
