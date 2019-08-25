@@ -21,7 +21,7 @@ def getxk(funcion,x):
     xk=yk-(operando1+operando2)*(fy/abs(fdx))
     return xk
     
-def Ostrowski(funcion,x0,tol,graf):
+def sne_ud_6(funcion,x0,tol,graf):
     """ Version del metodo iterativo Ostrowski–Chun, con un valor de alfa = alfa1 = beta1= beta =1
         Recuperado del documento "Solving nonlinear problems by Ostrowski–Chun type
         parametric families" creado por 

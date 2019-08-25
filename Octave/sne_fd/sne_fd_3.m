@@ -1,19 +1,13 @@
-%{
-    Evalua una funcion dependiente de X para asi encontrar una aproximacion
-    de una de sus raices.
-    Recuperado de "Low-complexity root-finding iteration functions with no
-    derivatives of any order of convergence?"
-    ecuacion 4
-    Autores "Alicia Cordero, José L. Hueso, Eulalia Martínez, Juan R. Torregrosa"
-    Retorna una lista donde sus elementos son el x aproximado y la cantidad de
-    iteraciones necesarias para cumplir con la tolerancia dada
-    parametros:
-    funcion: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
-    x0: valor inicial para empezar a calcular las iteraciones
-    tol: tolerancia aceptable para finalizar el metodo
-    graf: parametro para indicar si se quiere generar la grafica
-%}
-
+#   Version del metodo iterativo de Traub
+#   Recuperado del documento "Low-complexity root-finding iteration functions with no
+#   derivatives of any order of convergence" creado por "Alicia Cordero, Juan R. Torregrosa" 
+#   Intenta lograr valores de conversion mediante la ecuacion (2) del documento.
+#   Parametros: 
+#    1) funcion: Funcion en formato string en terminos de x la cual require la aproximacion
+#    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
+#    3) tol: Tolerancia al error maxima para el cÃ¡lculo de la aproximacion
+#    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
+#   Probado con x^3-4*x^2-10 usando x0 =1
 function [xAprox, itera, err] = sne_fd_3(funcion, x0, tol, graf)
     t_func = strcat('@(x)', funcion);
     try

@@ -1,7 +1,14 @@
-%{
-
-%}
-
+#   Version del metodo iterativo Ostrowski–Chun, con un valor de alfa = alfa1 = beta1= beta =1
+#   Recuperado del documento "Solving nonlinear problems by Ostrowski–Chun type
+#   parametric families" creado por 
+#   Alicia Cordero, Javier G. Maimó Juan R. Torregrosa · María P. Vassileva. 
+#   Intenta lograr valores de conversion mediante la ecuacion (5) del documento.
+#   Parametros: 
+#    1) funcion: Funcion en formato string en terminos de x la cual require la aproximacion
+#    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
+#    3) tol: Tolerancia al error maxima para el cÃ¡lculo de la aproximacion
+#    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
+#   Probado con x^3-4*x^2-10 usando x0 =1
 function [xk, k, err] = sne_ud_2(funcion, x0, tol, graf)
     pkg load symbolic;
     t_func = strcat('@(x)', funcion);

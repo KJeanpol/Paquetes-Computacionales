@@ -28,7 +28,8 @@ def getXk(funcion,xk):
     
 def sne_fd_4(funcion,x0,tol,graf):
     """Version del metodo iterativo de Traub con a=b=c=1 y d =0
-       Recuperado del documento "A class of Steffensen type methods with optimal order of convergence" 
+       Recuperado del documento "Low-complexity root-finding iteration functions with no
+       derivatives of any order of convergence" 
        creado por "Alicia Cordero, Juan R. Torregrosa" 
    
    Intenta lograr valores de conversion mediante la ecuacion (6) del documento.
@@ -58,4 +59,4 @@ def sne_fd_4(funcion,x0,tol,graf):
     else:
         print(listaX,listaY)
         g.imprimirResultado(listaX[-1],listaY[-1])
-        return g.graficar(listaX,listaY,"Low-complexity root-finding iteration")
+        return g.graficar(listaX,listaY,"Traub Method")
