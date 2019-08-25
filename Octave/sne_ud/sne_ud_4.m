@@ -14,7 +14,8 @@ endfunction
 #    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
 #    3) tol: Tolerancia al error maxima para el cálculo de la aproximacion
 #    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-function [aprox, iteration ] = sne_ud_1(func,x0,tol,graf)
+#  Probado con la función x^3 -4*x^2-10 con x_0 = 1
+function [aprox, iteration ] = sne_ud_4(func,x0,tol,graf)
     pkg load symbolic;
     syms x;
     tFunc = strcat('@(x)', func);
