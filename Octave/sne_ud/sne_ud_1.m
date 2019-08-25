@@ -14,6 +14,8 @@
     x0: valor inicial para empezar a calcular las iteraciones
     tol: tolerancia aceptable para finalizar el metodo
     graf: parametro para indicar si se quiere generar la grafica
+
+    sne_ud_1('x**2-4*x+4', 5, 0.00001, 1)
 %}
 
 function [xAprox, iter, err] = sne_ud_1(func, x0, tol, graf)
@@ -33,22 +35,23 @@ function [xAprox, iter, err] = sne_ud_1(func, x0, tol, graf)
     xAx = [];
     yAx = [];
     while (abs(f(xAprox)) >= tol)
-        xAx = [xAx itera]
-        yAx = [yAx f(xAprox)]
+        xAx = [xAx itera];
+        yAx = [yAx f(xAprox)];
         try
-            fpxn = 1/f(xAprox)
-            fpxn = fpxn**(-1)
+            fpxn = 1/f(xAprox);
+            fpxn = fpxn**(-1);
         catch
             break
         end_try_catch
-        fxn = f(xAprox)
-        Lfxn = Lf(func, xAprox)
-        xAprox = xAprox - (1+0.5*(Lfxn/(1-Lfxn)))*(fxn/fpxn)
-        itera = itera + 1
+        fxn = f(xAprox);
+        Lfxn = Lf(func, xAprox);
+        xAprox = xAprox - (1+0.5*(Lfxn/(1-Lfxn)))*(fxn/fpxn);
+        itera = itera + 1;
     end
     if (graf)
-        plot(xAx, yAx)
+        plot(xAx, yAx);
+        err = 'terminado con exito';
     else
-        disp('Metodo finalizado')
+        err = 'terminado con exito';
     end
 endfunction

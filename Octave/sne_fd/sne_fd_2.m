@@ -15,6 +15,7 @@
     tol: tolerancia aceptable para finalizar el metodo
     graf: parametro para indicar si se quiere generar la grafica
 
+    sne_fd_2('sin(x)**2-x**2+1', 5, 0.00000000001, 1)
 %}
 
 function [xAprox, iter, err] = sne_fd_2(fstr, x0, tol, graf)
@@ -36,25 +37,26 @@ function [xAprox, iter, err] = sne_fd_2(fstr, x0, tol, graf)
         xAx = [xAx itera];
         yAx = [yAx abs(f(xAprox))]; % revisar
         try
-            denominador1 = 1/(f(xn+f(xn)) - f(xn-f(xn)))
-            denominador1 = denominador1**(-1)
+            denominador1 = 1/(f(xn+f(xn)) - f(xn-f(xn)));
+            denominador1 = denominador1**(-1);
         catch
             break
         end_try_catch
-        yn = xn - ((2*f(xn)**2)/denominador1)
+        yn = xn - ((2*f(xn)**2)/denominador1);
         try
-            denominador2 = 1/(2*f(yn)-f(xn))
-            denominador2 = denominador2**(-1)
+            denominador2 = 1/(2*f(yn)-f(xn));
+            denominador2 = denominador2**(-1);
         catch
             break
         end_try_catch
-        zn = yn - ((yn-xn)/denominador2)*(f(yn))
-        xn = zn - ((yn-xn)/denominador1)*(f(zn))
-        itera = itera + 1
+        zn = yn - ((yn-xn)/denominador2)*(f(yn));
+        xn = zn - ((yn-xn)/denominador1)*(f(zn));
+        itera = itera + 1;
     end
     if (graf)
         plot(xAx, yAx)
+        err = 'terminado con exito';
     else
-        disp('Metodo finalizado')
+        err = 'terminado con exito';
     end
 endfunction

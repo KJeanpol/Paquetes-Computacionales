@@ -27,6 +27,8 @@ def sne_ud_1(fstr, x0, tol, graf): # super-Halley
     tol: tolerancia aceptable para finalizar el metodo
     graf: parametro para indicar si se quiere generar la grafica
 
+    Ejemplo sne_ud_1('x**2-4*x+4', 5, 0.00001, 1)
+    
     """
 
     x = Symbol("x")

@@ -18,6 +18,8 @@ def sne_fd_1(fstr, x0, tol, graf):
     tol: tolerancia aceptable para finalizar el metodo
     graf: parametro para indicar si se quiere generar la grafica
 
+    ejemplo: sne_fd_1('sin(x)**2-x**2+1', 5, 0.00000000001, 1)
+
     """
     try:
         f = Expression(fstr, ["x"])
@@ -73,6 +75,8 @@ def sne_fd_2(fstr, x0, tol, graf):
     tol: tolerancia aceptable para finalizar el metodo
     graf: parametro para indicar si se quiere generar la grafica
 
+    ejemplo: sne_fd_2('sin(x)**2-x**2+1', 5, 0.00000000001, 1)
+
     """
     try:
         f = Expression(fstr, ["x"])
@@ -81,10 +85,10 @@ def sne_fd_2(fstr, x0, tol, graf):
     yn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))))
     zn = yn - ((yn-x0)/(2*f(yn)-f(x0)))*(f(yn))
     xn = zn - ((yn-x0)/(2*f(yn)-f(x0)))*(f(zn))
-    itera = 0 
+    itera = 0
     xAx = []
     yAx = []
-    while (abs(f(xn)) >= 0):
+    while (abs(f(xn)) >= tol):
         xAx = [itera]
         yAx = [abs(f(xn))]
         try:
@@ -111,4 +115,3 @@ def sne_fd_2(fstr, x0, tol, graf):
         return [xn, itera]
     else:
         return [xn, itera]
-
