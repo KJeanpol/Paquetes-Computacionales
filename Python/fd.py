@@ -117,5 +117,3 @@ def sne_fd_2(fstr, x0, tol, graf):
         return [xn, itera]
     else:
         return [xn, itera]
-
-print(sne_fd_1('sin(x)**2-x**2+1', 5, 0.00000000000001, 1))
