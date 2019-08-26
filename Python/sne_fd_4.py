@@ -1,5 +1,6 @@
 import general as g
-
+import sympy as sp
+from sympy.parsing.sympy_parser import parse_expr
 def getFZX(funcion,zk,xk):
     numerador= g.evaluar(funcion,zk) - g.evaluar(funcion,xk)
     denominador = zk - xk
@@ -40,6 +41,11 @@ def sne_fd_4(funcion,x0,tol,graf):
     4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
     Probado con x^3-4*x^2-10 usando x0 =1
     """ 
+    x = sp.symbols('x')
+    try:
+        fun_sim = parse_expr(funcion)
+    except:
+        print ('Error de sintaxis')
     xk=getXk(funcion,x0)
     k=1  #Corresponde a la iteración en que se encuentra
     listaX=[0]

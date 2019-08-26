@@ -1,4 +1,4 @@
-#   Version del metodo iterativo de Traub con a=b=c=1 y d =0
+#   Version del metodo iterativo de Steffensen con a=b=c=1 y d =0
 #   Recuperado del documento "A class of Steffensen type methods with optimal order of convergence" 
 #   creado por "Alicia Cordero, Juan R. Torregrosa" 
 #   Intenta lograr valores de conversion mediante la ecuacion (6) del documento.
