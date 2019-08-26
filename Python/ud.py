@@ -56,7 +56,7 @@ def sne_ud_1(fstr, x0, tol, graf): # super-Halley
         itera += 1
     if (graf):
         plt.plot(xAx, yAx)
-        plt.title('Comportamiento del metodo de Newton-Raphson para ' + fstr) 
+        plt.title('Comportamiento del metodo de Super-Halley para ' + fstr) 
         plt.xlabel('iteraciones')
         plt.ylabel('|f(Xaprox)|')
         plt.grid(True)
@@ -64,3 +64,6 @@ def sne_ud_1(fstr, x0, tol, graf): # super-Halley
         return [xAprox, itera]
     else:
         return [xAprox, itera]
+
+
+print(sne_ud_1('x**2-4*x+4', 5, 0.00001, 1))

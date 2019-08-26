@@ -47,8 +47,10 @@ def sne_fd_1(fstr, x0, tol, graf):
         xn = xn - ((2*f(xn)**2)/denominador1)*((f(yn)-f(xn))/denominador2)
         itera += 1
     if (graf):
+        print(xAx)
+        print(yAx)
         plt.plot(xAx, yAx)
-        plt.title('Comportamiento del metodo de Newton-Raphson para ' + fstr) 
+        plt.title('Comportamiento del metodo de ODF para ' + fstr) 
         plt.xlabel('iteraciones')
         plt.ylabel('|f(Xaprox)|')
         plt.grid(True)
@@ -89,8 +91,8 @@ def sne_fd_2(fstr, x0, tol, graf):
     xAx = []
     yAx = []
     while (abs(f(xn)) >= tol):
-        xAx = [itera]
-        yAx = [abs(f(xn))]
+        xAx += [itera]
+        yAx += [abs(f(xn))]
         try:
             denominador1 = 1/(f(xn+f(xn)) - f(xn-f(xn)))
             denominador1 = denominador1**(-1)
@@ -107,7 +109,7 @@ def sne_fd_2(fstr, x0, tol, graf):
         itera += 1
     if (graf):
         plt.plot(xAx, yAx)
-        plt.title('Comportamiento del metodo de Newton-Raphson para ' + fstr) 
+        plt.title('Comportamiento del metodo de IODF para ' + fstr) 
         plt.xlabel('iteraciones')
         plt.ylabel('|f(Xaprox)|')
         plt.grid(True)
@@ -115,3 +117,5 @@ def sne_fd_2(fstr, x0, tol, graf):
         return [xn, itera]
     else:
         return [xn, itera]
+
+print(sne_fd_1('sin(x)**2-x**2+1', 5, 0.00000000000001, 1))
