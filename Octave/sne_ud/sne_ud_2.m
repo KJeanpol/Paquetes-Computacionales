@@ -21,7 +21,7 @@ function [xk, k, err] = sne_ud_2(funcion, x0, tol, graf)
     end_try_catch
     
     xk=getxk(funcion,x0)
-
+    k=1;
     listaX=[0];
     listaY=[x0];
     listaY=[listaY xk];
