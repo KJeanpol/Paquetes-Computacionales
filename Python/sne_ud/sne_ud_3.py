@@ -13,7 +13,7 @@ def sne_ud_3(func, x0, tol, graf):
     Alicia Cordero, Munish Kansal, Vinay Kanwar y Juan R. Torregrosa. Esta versión intenta 
     lograr valores de conversión en el orden de 8 comparado a el quinto logrado con el original, ecuación 2.1 del documento.
     Para efectos de probar el método, se utilizó la función x^3+4*(x^2)-10 con un valor incial de 1.
-    Prueba sne_ud_4("x^3+4*x^2-10", 1,0.0001,1)
+    Prueba sne_fd_6('x**2', 2, 1, 2, 0.0001,1)
     Parametros: 
     	1) func: Funcion en formato string en terminos de x la cual require la aproximacion
         2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones

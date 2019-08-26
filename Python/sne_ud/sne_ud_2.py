@@ -1,4 +1,6 @@
 import general as g
+import sympy as sp
+from sympy.parsing.sympy_parser import parse_expr
 
 def getyk(funcion,xk,a):
     numerador= g.evaluar(funcion,xk)
@@ -21,7 +23,7 @@ def getxk(funcion,x):
     xk=yk-(operando1+operando2)*(fy/abs(fdx))
     return xk
     
-def Ostrowski(funcion,x0,tol,graf):
+def sne_ud_6(funcion,x0,tol,graf):
     """ Version del metodo iterativo Ostrowski–Chun, con un valor de alfa = alfa1 = beta1= beta =1
         Recuperado del documento "Solving nonlinear problems by Ostrowski–Chun type
         parametric families" creado por 
@@ -33,9 +35,14 @@ def Ostrowski(funcion,x0,tol,graf):
     2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
     3) tol: Tolerancia al error maxima para el cÃ¡lculo de la aproximacion
     4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-   Probado con x^3-4*x^2-10 usando x0 =1
+   Probado con sne_ud_6("(x**3)-4*(x**2)-10", 1, 0.000001, 1)
    
     """ 
+    x = sp.symbols('x')
+    try:
+        fun_sim = parse_expr(funcion)
+    except:
+        print ('Error de sintaxis')
     xk=getxk(funcion,x0)
     k=1  #Corresponde a la iteración en que se encuentra
     listaX=[0]
