@@ -8,8 +8,9 @@
 %%    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
 %%    3) tol: Tolerancia al error maxima para el cálculo de la aproximacion
 %%    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-%%   Probado con x^3-4*x^2-10 usando x0 =1
+%%   Probado con sne_ud_2("sin(x)-(x**2)+1", 1, 0.000001, 1)
 function [xk, k, err] = sne_ud_2(funcion, x0, tol, graf)
+    pkg load symbolic;
     t_func = strcat('@(x)', funcion);
     try
         f = str2func(t_func);
@@ -49,16 +50,13 @@ function resultado = evaluar(funcion,varx)
  endfunction   
 
  
-function derivada = calDerivada(funcion,varx)
-       
+function derivada = calDerivada(funcion,varx)     
     syms x;
     f=inline(funcion);
     derivada=char(diff(funcion,x));
  endfunction   
  
 function err= error(funcion,x)
-
-
     func=inline(funcion);
     err= func(x);
 endfunction

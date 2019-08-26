@@ -7,7 +7,7 @@
 %%    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
 %%    3) tol: Tolerancia al error maxima para el cÃ¡lculo de la aproximacion
 %%    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-%%   Probado con 'sin(x)- x**2 +1' usando x0 =1
+%%   Probado con sne_fd_4("x**3+ (4*(x**2))-10", 1.5, 0.000001, 1)
 function [xk, k, err] = sne_fd_4(funcion, x0, tol, graf)
     xk=getxk(funcion,x0);
     k=1;  %%Corresponde a la iteración en que se encuentra

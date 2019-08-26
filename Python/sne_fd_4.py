@@ -4,7 +4,7 @@ from sympy.parsing.sympy_parser import parse_expr
 def getFZX(funcion,zk,xk):
     numerador= g.evaluar(funcion,zk) - g.evaluar(funcion,xk)
     denominador = zk - xk
-    fzx=numerador/denominador 
+    fzx=numerador/abs(denominador)
     return fzx
 
 def getzk(funcion,xk):
@@ -39,7 +39,7 @@ def sne_fd_4(funcion,x0,tol,graf):
     2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
     3) tol: Tolerancia al error maxima para el cÃ¡lculo de la aproximacion
     4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-    Probado con x^3-4*x^2-10 usando x0 =1
+    Probado con sne_fd_4("x**2-4*x+4",5, 0.000001, 1)
     """ 
     x = sp.symbols('x')
     try:
@@ -53,7 +53,8 @@ def sne_fd_4(funcion,x0,tol,graf):
     listaY.append(xk)
     listaX.append(1)
     while (abs(g.error(funcion,xk))>=tol):  
-        xk=getXk(funcion,xk)        
+        xk=getXk(funcion,xk)  
+        if (xk==True):
         xk1=getXk(funcion,xk) 
         listaY.append(xk)
         listaY.append(xk1)
@@ -63,6 +64,5 @@ def sne_fd_4(funcion,x0,tol,graf):
     if (graf==0):
         return g.imprimirResultado(listaX[-1],listaY[-1])
     else:
-        print(listaX,listaY)
         g.imprimirResultado(listaX[-1],listaY[-1])
         return g.graficar(listaX,listaY,"Traub Method")

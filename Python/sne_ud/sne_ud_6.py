@@ -1,6 +1,7 @@
 import general as g
 import sympy as sp
 from sympy.parsing.sympy_parser import parse_expr
+
 def getyk(funcion,xk,a):
     numerador= g.evaluar(funcion,xk)
     denominador=g.evaluar(g.calDerivada(funcion),xk)
