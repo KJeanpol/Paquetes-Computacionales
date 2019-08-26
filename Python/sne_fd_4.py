@@ -54,7 +54,6 @@ def sne_fd_4(funcion,x0,tol,graf):
     listaX.append(1)
     while (abs(g.error(funcion,xk))>=tol):  
         xk=getXk(funcion,xk)  
-        if (xk==True):
         xk1=getXk(funcion,xk) 
         listaY.append(xk)
         listaY.append(xk1)

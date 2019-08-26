@@ -22,7 +22,7 @@ def sne_fd_6(fstr, xn, alpha1, alpha2, tol, graf):
     tol: tolerancia aceptable para finalizar el metodo
     graf: parametro para indicar si se quiere generar la grafica
 
-    PRUEBA sne_ud_6('x**2', 2, 1, 2, 0.0001,1)
+    PRUEBA sne_fd_6('x**2', 2, 1, 2, 0.0001,1)
     """
 
     lista=[]
