@@ -1,22 +1,20 @@
-%{
-    Evalua una funcion dependiente de X para asi encontrar una aproximacion
-    de una de sus raices.
-
-    Recuperado de "Geometric constructions of iterative functions to solve
-        nonlinear equations"    
-    Autores "S.Amat, S.Busquier, J.M. Guti"
-
-    Retorna una lista donde sus elementos son el x aproximado y la cantidad de
-    iteraciones necesarias para cumplir con la tolerancia dada
-
-    parametros:
-    fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
-    x0: valor inicial para empezar a calcular las iteraciones
-    tol: tolerancia aceptable para finalizar el metodo
-    graf: parametro para indicar si se quiere generar la grafica
-
-    sne_ud_1('x**2-4*x+4', 5, 0.00001, 1)
-%}
+%%    Evalua una funcion dependiente de X para asi encontrar una aproximacion
+%%    de una de sus raices.
+%%
+%%    Recuperado de "Geometric constructions of iterative functions to solve
+%%        nonlinear equations"    
+%%    Autores "S.Amat, S.Busquier, J.M. Guti"
+%%
+%%    Retorna una lista donde sus elementos son el x aproximado y la cantidad de
+%%    iteraciones necesarias para cumplir con la tolerancia dada
+%%
+%%    parametros:
+%%    fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
+%%    x0: valor inicial para empezar a calcular las iteraciones
+%%    tol: tolerancia aceptable para finalizar el metodo
+%%    graf: parametro para indicar si se quiere generar la grafica
+%%
+%%    sne_ud_1('x**2-4*x+4', 5, 0.00001, 1)
 
 function [xAprox, iter, err] = sne_ud_1(func, x0, tol, graf)
     pkg load symbolic;
