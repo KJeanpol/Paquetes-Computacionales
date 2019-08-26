@@ -1,13 +1,13 @@
-%%   Version Original del metodo iterativo Chebyshev-Halley, con un valor de alfa = 1
-%%   Recuperado del documento "A stable class of improved second-derivative free
-%%   Chebyshev-Halley type methods with optimal eighth order convergence" creado por 
-%%   Alicia Cordero, Munish Kansal, Vinay Kanwar y Juan R. Torregrosa.
+%%   Método de Euler con convergencia cúbica.
+%%   Recuperado del documento "Geometric constructions of iterative functions to solve
+%%   nonlinear equations" creado por S.Amata, S.Busquiera, J.M. Gutierrez
 %%   Parametros: 
 %%    1) func: Funcion en formato string en terminos de x la cual require la aproximacion
 %%    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
-%%    3) tol: Tolerancia al error maxima para el cálculo de la aproximacion
+%%    3) tol: Tolerancia al error maxima para el cรกlculo de la aproximacion
 %%    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-%%  Probado con la función x^3 -4*x^2-10 con x_0 = 1
+%%  Probado con la funciรณn x^3 -4*x^2-10 con x_0 = 1
+
 function [aprox, iteration ] = sne_ud_4(func,x0,tol,graf)
     pkg load symbolic;
     syms x;
@@ -29,7 +29,7 @@ function [aprox, iteration ] = sne_ud_4(func,x0,tol,graf)
             functionAprox = f(aprox);
             firstDerivateAprox = firstDerivate(aprox);
             lF =computeLf(f,firstDerivate,secondDerivate,aprox);
-            temp = aprox - double((1+ 0.5 * (lF/1-lF))*functionAprox/firstDerivateAprox);
+            temp = aprox - double((2/2-lF)*functionAprox/firstDerivateAprox);
         catch
             break
         end_try_catch 
