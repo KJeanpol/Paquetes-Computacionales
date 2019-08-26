@@ -10,7 +10,6 @@
 %%    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
 %%   Probado con x^3-4*x^2-10 usando x0 =1
 function [xk, k, err] = sne_ud_2(funcion, x0, tol, graf)
-    pkg load symbolic;
     t_func = strcat('@(x)', funcion);
     try
         f = str2func(t_func);

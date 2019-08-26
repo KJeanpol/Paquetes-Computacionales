@@ -7,7 +7,7 @@
 %%    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
 %%    3) tol: Tolerancia al error maxima para el cálculo de la aproximacion
 %%    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-%%   Probado con x^3-4*x^2-10 usando x0 =1
+%%   Probado con sne_fd_3('((x-1)**3) -1', 1, 0.000001, 1) usando x0 =2
 function [xAprox, itera, err] = sne_fd_3(funcion, x0, tol, graf)
     t_func = strcat('@(x)', funcion);
     try

@@ -7,8 +7,8 @@
 %%    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
 %%    3) tol: Tolerancia al error maxima para el cÃ¡lculo de la aproximacion
 %%    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
-%%   Probado con x^3-4*x^2-10 usando x0 =1
-function [xAprox, itera, err] = sne_fd_4(funcion, x0, tol, graf)
+%%   Probado con 'sin(x)- x**2 +1' usando x0 =1
+function [xk, k, err] = sne_fd_4(funcion, x0, tol, graf)
     xk=getxk(funcion,x0);
     k=1;  %%Corresponde a la iteración en que se encuentra
     listaX=[];
@@ -18,15 +18,15 @@ function [xAprox, itera, err] = sne_fd_4(funcion, x0, tol, graf)
     listaY=[listaY xk];
     listaX=[listaX 1];
     while (abs(error(funcion,xk))>=tol)  
-        xk=getxk(funcion,xk)        
-        xk1=getxk(funcion,xk)   
-        listaY=[listaY xk]
-        listaY=[listaY xk1]
-        k+=2
-        listaX=[listaX (k-1)]
-        listaX=[listaX k]
+        xk=getxk(funcion,xk);        
+        xk1=getxk(funcion,xk);   
+        listaY=[listaY xk];
+        listaY=[listaY xk1];
+        k+=2;
+        listaX=[listaX (k-1)];
+        listaX=[listaX k];
     endwhile 
-    listaX=[listaX (k+1)]
+    listaX=[listaX (k+1)];
     if (graf)
         plot(listaX, listaY)
     else
