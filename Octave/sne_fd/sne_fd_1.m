@@ -47,6 +47,7 @@ function [xAprox, itera, err] = sne_fd_1(fstr, x0, tol, graf)
         xn = xn - ((2*f(xn)**2)/denominador1)*((f(yn)-f(xn))/denominador2);
         itera = itera + 1;
     end
+    xAprox = xn;
     if (graf)
         plot(xAx, yAx);
         err = 'terminado con exito';

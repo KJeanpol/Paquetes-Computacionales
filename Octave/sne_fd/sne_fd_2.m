@@ -10,9 +10,9 @@
 %%    x0: valor inicial para empezar a calcular las iteraciones
 %%    tol: tolerancia aceptable para finalizar el metodo
 %%    graf: parametro para indicar si se quiere generar la grafica
-%%    sne_fd_2('sin(x)**2-x**2+1', 5, 0.00000000001, 1)
+%%    sne_fd_2('sin(x)**2-x**2+1', 5, 0.0000000000001, 1)
 
-function [xAprox, iter, err] = sne_fd_2(fstr, x0, tol, graf)
+function [xAprox, itera, err] = sne_fd_2(fstr, x0, tol, graf)
     t_func = strcat('@(x)', fstr);
     try
         f = str2func(t_func);
@@ -30,7 +30,7 @@ function [xAprox, iter, err] = sne_fd_2(fstr, x0, tol, graf)
     yAx = [];
     while(abs(f(xn)) >= tol)
         xAx = [xAx itera];
-        yAx = [yAx abs(f(xAprox))]; % revisar
+        yAx = [yAx abs(f(xn))]; % revisar
         try
             denominador1 = 1/(f(xn+f(xn)) - f(xn-f(xn)));
             denominador1 = denominador1**(-1);
@@ -48,6 +48,7 @@ function [xAprox, iter, err] = sne_fd_2(fstr, x0, tol, graf)
         xn = zn - ((yn-xn)/denominador1)*(f(zn));
         itera = itera + 1;
     end
+    xAprox = xn;
     if (graf)
         plot(xAx, yAx)
         err = 'terminado con exito';
