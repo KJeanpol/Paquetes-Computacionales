@@ -10,7 +10,7 @@
 %%    x0: valor inicial para empezar a calcular las iteraciones
 %%    tol: tolerancia aceptable para finalizar el metodo
 %%    graf: parametro para indicar si se quiere generar la grafica
-%%    sne_fd_1('sin(x)**2-x**2+1', 5, 0.00000000001, 1)
+%%    sne_fd_1('sin(x)**2-x**2+1', 5, 0.0000000000001, 1)
 
 
 function [xAprox, itera, err] = sne_fd_1(fstr, x0, tol, graf)
@@ -22,15 +22,15 @@ function [xAprox, itera, err] = sne_fd_1(fstr, x0, tol, graf)
         itera = 0;
         err = 'La Syntaxis de la funcion es incorrecta';
     end_try_catch
-    yn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))));
-    xn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))))*((f(yn)-f(x0))/(2*f(yn)-f(x0)));
+    yn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))))
+    xn = x0 - ((2*f(x0)**2)/((f(x0+f(x0)))-(f(x0-f(x0)))))*((f(yn)-f(x0))/(2*f(yn)-f(x0)))
     itera = 0;
     xAprox = 0;
     xAx = [];
     yAx = [];
     while (abs(f(xn)) >= tol)
         xAx = [xAx itera];
-        yAx = [yAx abs(f(xAprox))]; % revisar
+        yAx = [yAx abs(f(xn))]; % revisar
         try
             denominador1 = 1/(f(xn+f(xn)) - f(xn-f(xn)));
             denominador1 = denominador1**(-1);
