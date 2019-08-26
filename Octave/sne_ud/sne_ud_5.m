@@ -1,19 +1,12 @@
-function [lfValue] = computeLf(func,firstDerivate, secondDerivate, aprox)
-        secondDerivateAprox = secondDerivate(aprox);
-        functionAprox = func(aprox);
-        firstDerivateAprox = firstDerivate(aprox);
-        lfValue = secondDerivateAprox*functionAprox/firstDerivateAprox^2;
-endfunction
-
-#   Método de Liu-Wang, utilizando alfa_1 = 5 y alfa_2 = -7, así como la función sin(x)^2-x^2+1 con x_0 = 1.5
-#   Recuperado del documento "A stable class of improved second-derivative free
-#   Chebyshev-Halley type methods with optimal eighth order convergence" creado por 
-#   Alicia Cordero, Munish Kansal, Vinay Kanwar y Juan R. Torregrosa.
-#   Parametros: 
-#    1) func: Funcion en formato string en terminos de x la cual require la aproximacion
-#    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
-#    3) tol: Tolerancia al error maxima para el cálculo de la aproximacion
-#    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
+%%   Método de Liu-Wang, utilizando alfa_1 = 5 y alfa_2 = -7, así como la función sin(x)^2-x^2+1 con x_0 = 1.5
+%%   Recuperado del documento "A stable class of improved second-derivative free
+%%   Chebyshev-Halley type methods with optimal eighth order convergence" creado por 
+%%   Alicia Cordero, Munish Kansal, Vinay Kanwar y Juan R. Torregrosa.
+%%   Parametros: 
+%%    1) func: Funcion en formato string en terminos de x la cual require la aproximacion
+%%    2) x0: Valor inicial de la funcion necesario para las siguientes aproximaciones
+%%    3) tol: Tolerancia al error maxima para el cálculo de la aproximacion
+%%    4) graf: Bandera para realizar o no el grafico de iteraciones vs aproximacion.
 
 function [iteration, aprox] = sne_ud_5(func, x0, tol, graf)
     pkg load symbolic;
@@ -58,4 +51,11 @@ function [iteration, aprox] = sne_ud_5(func, x0, tol, graf)
         textResult = strcat("Iteration numeber:", num2str(iteration) ," Aproximation value: ", num2str(aprox))  
         disp(textResult)
     end
+endfunction
+
+function [lfValue] = computeLf(func,firstDerivate, secondDerivate, aprox)
+        secondDerivateAprox = secondDerivate(aprox);
+        functionAprox = func(aprox);
+        firstDerivateAprox = firstDerivate(aprox);
+        lfValue = secondDerivateAprox*functionAprox/firstDerivateAprox^2;
 endfunction
