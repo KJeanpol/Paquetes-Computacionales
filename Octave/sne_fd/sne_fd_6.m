@@ -1,25 +1,24 @@
-%{
-  Evalua una funcion dependiente de X para asi encontrar una aproximacion
-  de una de sus raices.
+%%  Evalua una funcion dependiente de X para asi encontrar una aproximacion
+%%  de una de sus raices.
     
-  Recuperado de "Dynamical Techniques for Analyzing Iterative
-  Schemes with Memory"
-  Ecuacion 4
-  Autores "Neha Choubey,A. Cordero, J. P. Jaiswal, and J. R. Torregrosa"
+%%  Recuperado de "Dynamical Techniques for Analyzing Iterative
+%%  Schemes with Memory"
+%%  Ecuacion 4
+%%  Autores "Neha Choubey,A. Cordero, J. P. Jaiswal, and J. R. Torregrosa"
     
-  Retorna una lista donde sus elementos son el x aproximado y la cantidad de
-  iteraciones necesarias para cumplir con la tolerancia dada.
+%%  Retorna una lista donde sus elementos son el x aproximado y la cantidad de
+%%  iteraciones necesarias para cumplir con la tolerancia dada.
     
-  Parámetros:
-  fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
-  xn: valor inicial para empezar a calcular las iteraciones
-  alpha1: constante necesario para calcular x
-  alpha2: constante necesario para calcular x
-  tol: tolerancia aceptable para finalizar el metodo
-  graf: parametro para indicar si se quiere generar la grafica
+%%  Parámetros:
+%%  fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
+%%  xn: valor inicial para empezar a calcular las iteraciones
+%%  alpha1: constante necesario para calcular x
+%%  alpha2: constante necesario para calcular x
+%%  tol: tolerancia aceptable para finalizar el metodo
+%%  graf: parametro para indicar si se quiere generar la grafica
 
-  PRUEBA sne_fd_6('x**2', 2, 1, 2, 0.0001, 1)
-%}
+%%  PRUEBA sne_fd_6('x**2', 2, 1, 2, 0.0001, 1)
+
 
 disp('')
 function [xAprox, iter,err] = sne_fd_6(func, xn, alpha1, alpha2, tol, graf)
