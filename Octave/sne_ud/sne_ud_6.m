@@ -1,23 +1,23 @@
-%{
-Evalua una funcion dependiente de X para asi encontrar una aproximacion
-de una de sus raices.
+
+%%Evalua una funcion dependiente de X para asi encontrar una aproximacion
+%%de una de sus raices.
     
-Recuperado de "Multiplicity anomalies of an optimal fourth-order class of
-iterative methods for solving nonlinear equations"
-Ecuacion 1
-Autores "Ramandeep Behl, Alicia Cordero, Sandile S. Motsa, Juan R. Torregrosa"
-Retorna una lista donde sus elementos son el x aproximado y la cantidad de
-iteraciones necesarias para cumplir con la tolerancia dada
+%%Recuperado de "Multiplicity anomalies of an optimal fourth-order class of
+%%iterative methods for solving nonlinear equations"
+%%Ecuacion 1
+%%Autores "Ramandeep Behl, Alicia Cordero, Sandile S. Motsa, Juan R. Torregrosa"
+%%Retorna una lista donde sus elementos son el x aproximado y la cantidad de
+%%iteraciones necesarias para cumplir con la tolerancia dada
 
-Parametros:
-fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
-x0: valor inicial para empezar a calcular las iteraciones
-m: constante necesario para calcular x
-tol: tolerancia aceptable para finalizar el metodo
-graf: parametro para indicar si se quiere generar la grafica
+%%Parametros:
+%%fstr: funcion dependdiente de x a la cual se le quiere encontrar sus ceros
+%%x0: valor inicial para empezar a calcular las iteraciones
+%%m: constante necesario para calcular x
+%%tol: tolerancia aceptable para finalizar el metodo
+%%graf: parametro para indicar si se quiere generar la grafica
 
-PRUEBA sne_ud_6('x**2', 2, 1, 0.0001, 1)
-%}
+%%PRUEBA sne_ud_6('x**2', 2, 1, 0.0001, 1)
+
 disp('')
 function [xAprox, iter, err] = sne_ud_6(func, x0, m, tol, graf)
   pkg load symbolic;
